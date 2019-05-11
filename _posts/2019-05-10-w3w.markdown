@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "what3words links"
+---
+Page with samples of [what3words][w3w-home] links.
+
+<ul>
+  <li><a href="http://map.what3words.com/cheese.holly.smug">http://map.what3words.com/cheese.holly.smug</a></li>
+  <li><a href="https://map.what3words.com/cheese.holly.smug">https://map.what3words.com/cheese.holly.smug</a></li>
+  <li><a href="http://w3w.co/cheese.holly.smug">http://w3w.co/cheese.holly.smug</a></li>
+  <li><a href="https://w3w.co/cheese.holly.smug">https://w3w.co/cheese.holly.smug</a></li>
+</ul>
+
+[w3w-home]: https://what3words.com/
