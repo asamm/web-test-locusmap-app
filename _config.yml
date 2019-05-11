@@ -16,7 +16,7 @@
 title: Locus Map, Dev & test site
 description: Test site for validation of functionality of Locus Map & GIS applications.
   
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/locus-map-samples" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  menion
 
