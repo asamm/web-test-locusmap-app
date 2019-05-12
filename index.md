@@ -5,4 +5,8 @@
 layout: home
 list_title: Test cases
 ---
-Collecting stuff for testing may be a complicated. This nice small web, has simple purpose. Simplify this painful process. It allows us to simply collect and serve testing links, files etc. for quick check of app functionality.
+Collecting stuff for testing may be a complicated. This nice small web, has simple purpose: simplify this painful process. It allows us to simply collect and serve testing links, files etc. for quick check of app functionality.
+
+Web page source code is available on [Github][github], where we also collect suggestions.
+
+[github]: https://github.com/asamm/locus-map-samples
