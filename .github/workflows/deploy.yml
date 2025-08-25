@@ -1,57 +1,33 @@
-name: GitHub Pages Deployment
+name: Pages Deployment
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-    
-# Sets permissions for GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between a run in progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow for more than one deployment to happen.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    branches: [ master ]
 
 jobs:
-  # The build job
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checks out your repository's code on the runner.
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: 'recursive' # This will ensure your theme is checked out.
-
-      # Step 1: Install Zola using a dedicated action.
-      - name: Install Zola
-        uses: jakejarvis/zola-action@master
-        
-      # Step 2: Build the Zola site.
-      - name: Build site
-        run: zola build
-
-      # Step 3: Upload the built site as an artifact.
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # This specifies the directory to upload.
-          # The default output directory for Zola is `public`.
-          path: 'public'
-  
-  # The deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          submodules: 'recursive'
+      
+      # Step 2: Ensure submodules are properly initialized and updated.
+      - name: Initialize submodules
+        run: |
+          git submodule update --init --recursive
+      
+      # Step 3: Use a pre-built GitHub Action to build and deploy the Zola site.
+      - name: Build and deploy Zola site
+        uses: shalzz/zola-deploy-action@v0.21.0
+        env:
+          # GITHUB_TOKEN is a temporary token provided by GitHub Actions
+          # with permissions to push to your repository.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          # This specifies the branch where the built site (the contents of
+          # the public/ directory) will be pushed for GitHub Pages to serve.
+          PAGES_BRANCH: gh-pages
