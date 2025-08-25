@@ -18,7 +18,7 @@ jobs:
 
       # Step 2: Uses a pre-built GitHub Action to build and deploy the Zola site
       - name: Build and deploy Zola site
-        uses: shalzz/zola-deploy-action@v0.20.0
+        uses: shalzz/zola-deploy-action@v0.21.0
         env:
           # GITHUB_TOKEN is a temporary token provided by GitHub Actions
           # with permissions to push to your repository.
