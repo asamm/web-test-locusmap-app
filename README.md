@@ -1,1 +1,1 @@
-Testing web page
+Testing web page for Locus Map app.
