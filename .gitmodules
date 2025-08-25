@@ -1,0 +1,4 @@
+[submodule "themes/zola-pickles"]
+	path = themes/zola-pickles
+	url = https://github.com/lukehsiao/zola-pickles.git
+	branch = main
