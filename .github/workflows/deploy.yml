@@ -1,0 +1,29 @@
+name: GitHub Pages Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checks out your repository's code on the runner.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      # Step 2: Uses a pre-built GitHub Action to build and deploy the Zola site
+      - name: Build and deploy Zola site
+        uses: shalzz/zola-deploy-action@v0.20.0
+        env:
+          # GITHUB_TOKEN is a temporary token provided by GitHub Actions
+          # with permissions to push to your repository.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          # This specifies the branch where the built site (the contents of
+          # the public/ directory) will be pushed for GitHub Pages to serve.
+          PAGES_BRANCH: gh-pages
