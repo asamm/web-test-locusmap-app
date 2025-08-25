@@ -1,24 +1,41 @@
 {% macro platform_row(name, value) %}
     {% set val = value | default(value="") %}
 
-    {% if val == "1" %}
-        {% set support = "✓" %}
-        {% set state = "✓" %}
-    {% elif val == "0" %}
-        {% set support = "✓" %}
-        {% set state = "?" %}
-    {% elif val == "-1" %}
-        {% set support = "✓" %}
-        {% set state = "☐" %}
+    {# choose platform icon #}
+    {% if name == "Android" %}
+        {% set icon = "<i class='fab fa-android' style='color:#3DDC84; font-size:24px; width:32px; text-align:center;'></i>" %}
+    {% elif name == "iOS" %}
+        {% set icon = "<i class='fab fa-apple' style='color:#000; font-size:24px; width:32px; text-align:center;'></i>" %}
+    {% elif name == "Web" %}
+        {% set icon = "<i class='fas fa-globe' style='color:#0078D7; font-size:24px; width:32px; text-align:center;'></i>" %}
+    {% else %}
+        {% set icon = "" %}
+    {% endif %}
+
+    {# choose support icon (should support column) #}
+    {% if val == "1" or val == "0" or val == "-1" %}
+        {% set support = "<i class='fas fa-check' style='color:green; font-size:20px;'></i>" %}
     {% else %}
         {% set support = "-" %}
+    {% endif %}
+
+    {# choose state icon (implemented column) #}
+    {% if val == "1" %}
+        {% set state = "<i class='fas fa-check-circle' style='color:green; font-size:20px;'></i>" %}
+    {% elif val == "0" %}
+        {% set state = "<i class='fas fa-question-circle' style='color:orange; font-size:20px;'></i>" %}
+    {% elif val == "-1" %}
+        {% set state = "<i class='fas fa-times-circle' style='color:red; font-size:20px;'></i>" %}
+    {% else %}
         {% set state = "-" %}
     {% endif %}
 
     <tr>
-        <td style="text-align:left; padding: 4px 8px;">{{ name }}</td>
-        <td style="text-align:right; padding: 4px 8px;">{{ support }}</td>
-        <td style="text-align:right; padding: 4px 8px;">{{ state }}</td>
+        <td style="text-align:left; padding: 4px 8px; align-items:center;">
+            {{ icon | safe }} <span>{{ name }}</span>
+        </td>
+        <td style="text-align:right; padding: 4px 8px;">{{ support | safe }}</td>
+        <td style="text-align:right; padding: 4px 8px;">{{ state | safe }}</td>
     </tr>
 {% endmacro %}
 
