@@ -15,9 +15,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true
-
-      # Step 2: Uses a pre-built GitHub Action to build and deploy the Zola site
+          submodules: 'recursive'
+      
+      # Step 2: Ensure submodules are properly initialized and updated.
+      - name: Initialize submodules
+        run: |
+          git submodule update --init --recursive
+      
+      # Step 3: Use a pre-built GitHub Action to build and deploy the Zola site.
       - name: Build and deploy Zola site
         uses: shalzz/zola-deploy-action@v0.21.0
         env:
