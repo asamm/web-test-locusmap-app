@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<locusActions>
+	<download>
+		<name>Alpine - Bretaň</name>
+		<source>
+			<![CDATA[http://test.asamm.com/menion/actions/bretan/data.zip]]>
+		</source>
+		<dest><![CDATA[/mapItems/Alpine - Bretaň/data.zip]]></dest>
+		<after>extract|deleteSource</after>
+	</download>
+</locusActions>
